@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Daam Poker Game</title>
+<title>Poker Game</title>
 <style>
-body {
-  text-align: center;
-  font-family: Arial;
-  background: #f2f2f2;
+body{
+  text-align:center;
+  font-family:Arial;
+  background:#1b5e20;
+  color:white;
 }
 
-h1 {
-  color: #222;
+.card{
+  display:inline-block;
+  background:white;
+  color:black;
+  padding:20px;
+  margin:10px;
+  font-size:30px;
+  border-radius:10px;
 }
 
-button {
-  padding: 15px 25px;
-  margin: 10px;
-  font-size: 18px;
-  cursor: pointer;
+button{
+  padding:12px 25px;
+  font-size:18px;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<h1>♟️ Даам & 🃏 Покер</h1>
+<h1>🃏 2 Player Poker</h1>
 
-<p>Найзуудтайгаа тоглох онлайн тоглоомын сайт</p>
+<h2>Тоглогч 1</h2>
+<div id="player1"></div>
 
-<button>Даам тоглох</button>
-<button>Покер тоглох</button>
+<h2>Тоглогч 2</h2>
+<div id="player2"></div>
+
+<button onclick="deal()">Карт тараах</button>
+
+<script>
+let cards=[
+"♠A","♠K","♠Q","♥A","♥K","♥Q",
+"♦A","♦K","♦Q","♣A","♣K","♣Q"
+];
+
+function deal(){
+ let a=Math.floor(Math.random()*cards.length);
+ let b=Math.floor(Math.random()*cards.length);
+
+ while(a==b){
+  b=Math.floor(Math.random()*cards.length);
+ }
+
+ document.getElementById("player1").innerHTML=
+ "<div class='card'>"+cards[a]+"</div>";
+
+ document.getElementById("player2").innerHTML=
+ "<div class='card'>"+cards[b]+"</div>";
+}
+</script>
 
 </body>
 </html>
