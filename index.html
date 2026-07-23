@@ -1,47 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Online Poker Room</title>
+<title>9 Player Texas Holdem</title>
 <style>
 body{
- text-align:center;
- font-family:Arial;
- background:#14532d;
- color:white;
+  background:#075e32;
+  color:white;
+  text-align:center;
+  font-family:Arial;
 }
-input,button{
- padding:12px;
- margin:8px;
- font-size:18px;
+.player{
+  display:inline-block;
+  background:#064;
+  padding:15px;
+  margin:5px;
+  border-radius:10px;
+}
+.card{
+  display:inline-block;
+  background:white;
+  color:black;
+  padding:15px;
+  margin:5px;
+  border-radius:8px;
+  font-size:25px;
+}
+button{
+  padding:12px 25px;
+  font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🃏 Online Poker</h1>
+<h1>🃏 Texas Hold'em</h1>
 
-<h2>Өрөө үүсгэх</h2>
-<button onclick="createRoom()">Room үүсгэх</button>
+<div id="table"></div>
 
-<h2>Өрөөнд орох</h2>
-<input id="room" placeholder="Room код">
-<button onclick="joinRoom()">Орох</button>
+<h2>Ширээний карт</h2>
+<div id="board"></div>
 
-<h3 id="result"></h3>
+<button onclick="deal()">Карт тараах</button>
 
 <script>
-function createRoom(){
- let code=Math.floor(1000+Math.random()*9000);
- document.getElementById("result").innerHTML=
- "Таны өрөөний код: "+code;
+
+let deck=[
+"♠A","♠K","♠Q","♠J","♠10",
+"♥A","♥K","♥Q","♥J","♥10",
+"♦A","♦K","♦Q","♦J","♦10",
+"♣A","♣K","♣Q","♣J","♣10"
+];
+
+function randomCard(){
+ let i=Math.floor(Math.random()*deck.length);
+ return deck.splice(i,1)[0];
 }
 
-function joinRoom(){
- let code=document.getElementById("room").value;
- document.getElementById("result").innerHTML=
- "Room "+code+" руу орлоо!";
+function deal(){
+
+document.getElementById("table").innerHTML="";
+
+for(let i=1;i<=9;i++){
+
+let c1=randomCard();
+let c2=randomCard();
+
+document.getElementById("table").innerHTML +=
+`
+<div class="player">
+Тоглогч ${i}<br>
+<span class="card">${c1}</span>
+<span class="card">${c2}</span>
+</div>
+`;
 }
+
+document.getElementById("board").innerHTML=
+`
+<span class="card">${randomCard()}</span>
+<span class="card">${randomCard()}</span>
+<span class="card">${randomCard()}</span>
+<span class="card">${randomCard()}</span>
+<span class="card">${randomCard()}</span>
+`;
+
+}
+
 </script>
 
 </body>
