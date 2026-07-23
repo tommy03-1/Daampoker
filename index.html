@@ -1,64 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Poker Game</title>
+<title>Online Poker Room</title>
 <style>
 body{
-  text-align:center;
-  font-family:Arial;
-  background:#1b5e20;
-  color:white;
+ text-align:center;
+ font-family:Arial;
+ background:#14532d;
+ color:white;
 }
-
-.card{
-  display:inline-block;
-  background:white;
-  color:black;
-  padding:20px;
-  margin:10px;
-  font-size:30px;
-  border-radius:10px;
-}
-
-button{
-  padding:12px 25px;
-  font-size:18px;
-  cursor:pointer;
+input,button{
+ padding:12px;
+ margin:8px;
+ font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🃏 2 Player Poker</h1>
+<h1>🃏 Online Poker</h1>
 
-<h2>Тоглогч 1</h2>
-<div id="player1"></div>
+<h2>Өрөө үүсгэх</h2>
+<button onclick="createRoom()">Room үүсгэх</button>
 
-<h2>Тоглогч 2</h2>
-<div id="player2"></div>
+<h2>Өрөөнд орох</h2>
+<input id="room" placeholder="Room код">
+<button onclick="joinRoom()">Орох</button>
 
-<button onclick="deal()">Карт тараах</button>
+<h3 id="result"></h3>
 
 <script>
-let cards=[
-"♠A","♠K","♠Q","♥A","♥K","♥Q",
-"♦A","♦K","♦Q","♣A","♣K","♣Q"
-];
+function createRoom(){
+ let code=Math.floor(1000+Math.random()*9000);
+ document.getElementById("result").innerHTML=
+ "Таны өрөөний код: "+code;
+}
 
-function deal(){
- let a=Math.floor(Math.random()*cards.length);
- let b=Math.floor(Math.random()*cards.length);
-
- while(a==b){
-  b=Math.floor(Math.random()*cards.length);
- }
-
- document.getElementById("player1").innerHTML=
- "<div class='card'>"+cards[a]+"</div>";
-
- document.getElementById("player2").innerHTML=
- "<div class='card'>"+cards[b]+"</div>";
+function joinRoom(){
+ let code=document.getElementById("room").value;
+ document.getElementById("result").innerHTML=
+ "Room "+code+" руу орлоо!";
 }
 </script>
 
